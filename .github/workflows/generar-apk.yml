@@ -28,14 +28,16 @@ jobs:
       - name: Instalar Android 34
         run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
-      - name: Configurar Gradle
-        uses: gradle/actions/setup-gradle@v6
+      - name: Quitar wrapper no oficial
+        run: rm -f gradle/wrapper/gradle-wrapper.jar
 
-      - name: Dar permisos a Gradle
-        run: chmod +x gradlew
+      - name: Instalar Gradle 8.7 oficial
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '8.7'
 
       - name: Compilar APK
-        run: ./gradlew --no-daemon assembleDebug
+        run: gradle --no-daemon assembleDebug
 
       - name: Preparar APK
         run: cp app/build/outputs/apk/debug/app-debug.apk ColectivosRosario.apk
@@ -43,6 +45,7 @@ jobs:
       - name: Subir APK
         uses: actions/upload-artifact@v7
         with:
+          name: ColectivosRosario-APK
           path: ColectivosRosario.apk
           archive: false
           if-no-files-found: error
