@@ -12,22 +12,24 @@ jobs:
 
     steps:
       - name: Descargar proyecto
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
 
       - name: Configurar Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       - name: Instalar Android 34
         run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
       - name: Configurar Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Dar permisos a Gradle
         run: chmod +x gradlew
@@ -38,9 +40,9 @@ jobs:
       - name: Preparar APK
         run: cp app/build/outputs/apk/debug/app-debug.apk ColectivosRosario.apk
 
-      - name: Guardar APK
-        uses: actions/upload-artifact@v4
+      - name: Subir APK
+        uses: actions/upload-artifact@v7
         with:
-          name: ColectivosRosario-APK
           path: ColectivosRosario.apk
+          archive: false
           if-no-files-found: error
