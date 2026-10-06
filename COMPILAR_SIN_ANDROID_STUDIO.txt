@@ -1,0 +1,23 @@
+COLECTIVOS ROSARIO - GENERAR APK SIN ANDROID STUDIO
+==================================================
+
+No necesitás instalar Android Studio.
+
+OPCIÓN RECOMENDADA: GITHUB ACTIONS
+
+1. Entrá a github.com y creá un repositorio nuevo, por ejemplo: ColectivosRosario.
+2. Subí TODO el contenido de esta carpeta al repositorio.
+   Importante: la carpeta .github también debe quedar subida.
+3. Abrí la pestaña "Actions" del repositorio.
+4. Entrá al workflow "Generar APK Android".
+5. Tocá "Run workflow" y luego confirmá "Run workflow".
+6. Cuando termine con tilde verde, abrí esa ejecución.
+7. En la sección Artifacts aparecerá ColectivosRosario.apk.
+8. Descargalo y pasalo a tu teléfono Android.
+9. En Android, si lo solicita, habilitá temporalmente "Instalar apps desconocidas"
+   para el navegador o gestor de archivos desde donde abras el APK.
+
+El APK generado es de tipo DEBUG y sirve para probar e instalar la app en tu teléfono.
+No requiere Android Studio en tu PC.
+
+Si hacés cambios y los volvés a subir al repositorio, GitHub generará otro APK automáticamente.
